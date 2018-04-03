@@ -12,7 +12,7 @@ export class Movie {
   }
 
   get priceCode(): number {
-    return this._priceCode
+    return this._priceCode;
   }
 
   set priceCode(value: number) {
@@ -74,13 +74,13 @@ export class Customer {
           if (each.daysRented > 2)
             thisAmount += (each.daysRented - 2) * 1.5;
           break;
-        case Movie.NEW_RELEASE:
-          thisAmount += each.daysRented * 3;
-          break;
         case Movie.CHILDREN:
           thisAmount += 1.5;
           if (each.daysRented > 3)
             thisAmount += (each.daysRented - 3) * 1.5;
+          break;
+        case Movie.NEW_RELEASE:
+          thisAmount += each.daysRented * 3;
           break;
       }
 

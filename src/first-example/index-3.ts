@@ -72,7 +72,7 @@ export class Customer {
     this._rentals.push(arg);
   }
 
-  get name() {
+  get name(): string {
     return this._name;
   }
 
@@ -121,7 +121,7 @@ export class Customer {
 
 export abstract class Price {
   abstract get priceCode(): number;
-  abstract getCharge(daysRented: number): number
+  abstract getCharge(daysRented: number): number;
 
   static newPrice(value: number): Price {
     switch (value) {
@@ -138,6 +138,19 @@ export abstract class Price {
 
   getFrequentRenterPoints(daysRented: number): number {
     return 1;
+  }
+}
+
+export class RegularPrice extends Price {
+  get priceCode(): number {
+    return Movie.REGULAR;
+  }
+
+  getCharge(daysRented: number): number {
+    let result = 2;
+    if (daysRented > 2)
+      result += (daysRented - 2) * 1.5;
+    return result;
   }
 }
 
@@ -168,18 +181,5 @@ export class NewReleasePrice extends Price {
       return 2;
     else
       return 1;
-  }
-}
-
-export class RegularPrice extends Price {
-  get priceCode(): number {
-    return Movie.REGULAR;
-  }
-
-  getCharge(daysRented: number): number {
-    let result = 2;
-    if (daysRented > 2)
-      result += (daysRented - 2) * 1.5;
-    return result;
   }
 }
