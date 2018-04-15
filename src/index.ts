@@ -1,3 +1,3 @@
-import { Greeting } from "./greeting";
+import { Greeting } from './greeting';
 
 new Greeting().displayMessage('World!');
