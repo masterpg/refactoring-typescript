@@ -1,6 +1,10 @@
-mocha.setup({ ui: 'tdd' });
+(async () => {
+  mocha.setup({ ui: 'tdd' });
 
-import './greeting';
-import './first-example';
+  await Promise.all([
+    require('./greeting'),
+    require('./first-example'),
+  ]);
 
-mocha.run();
+  mocha.run();
+})();
